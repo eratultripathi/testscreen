@@ -1,5 +1,5 @@
 {
-  "name": "track",
+  "name": "api",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -12,16 +12,24 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
+   "dependencies": {
     "base64-js": "^1.5.1",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "fs": "^0.0.1-security",
-    "mongoose": "^7.4.1",
-    "nodemon": "^3.0.1",
-    "screenshot-desktop": "^1.15.0"
+    "helmet": "^6.1.5",
+    "joi": "^17.6.0",
+    "joi-password-complexity": "^5.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.4.5",
+    "nodemon": "^2.0.19",
+    "screenshot-desktop": "^0.0.0-development"
   }
  
 }
