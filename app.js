@@ -1,35 +1,49 @@
-// server.js
-const express = require('express');
-const cors = require('cors');
-const screenshot = require('screenshot-desktop');
+
+const express = require("express");
+const app = express();
+const fs = require('fs');
+const mongoose = require('mongoose');
+
+require("dotenv").config();
+const cors = require("cors");
+const {connection} = require("./db");
+const userRoutes = require("./routes/users");
+const authRoutes = require("./routes/auth");
+const projectRouter = require("./routes/project.routes");
+const engineerprofileRouter = require("./routes/engineerprofile.routes.js");
+const screenshotRoute = require("./routes/screenshot.routes.js")
+
+const projectCredentialRoute = require("./routes/ProjectCredential.js")
+const projectTaskRoute = require("./routes/ProjectTask.js")
+
+// database connection
+
+
+connection();
+
+// console.log(content)
+
+
+// middlewares
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+
+app.use(cors());
+
+
+// routes
+app.use("/api/users", userRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/user", projectRouter);
+app.use("/api/user",engineerprofileRouter);
+app.use("/api/user",screenshotRoute);
+// app.use("/api",userscreenRouter)
+app.use("/api/project",projectCredentialRoute);
+app.use("/api/project",projectTaskRoute);
 
 
 
 
-
-
-const app = express()
-app.use(cors())
-app.use(express.json({ limit: '30mb', extended: true }))
-app.use(express.urlencoded({ limit: '30mb', extended: true }))
-
-
-const port = 3001; // Change this port number as per your preference
-
-app.get('/screenshot', async (req, res) => {
-  try {
-    const imageBuffer = await screenshot({ format: 'png' });
-    res.set('Content-Type', 'image/png');
-    res.send(imageBuffer);
-  } catch (error) {
-    console.error('Error capturing screenshot:', error);
-    res.status(500).json({ error: 'Could not capture screenshot' });
-  }
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
-
-
+const port = 5000;
+app.listen(port, console.log(`Listening on port ${port}...`));
